@@ -17,6 +17,9 @@ public class CalculatorServiceTests {
 
     @Test
     void plusTest() {
+        assertThrows(NullPointerException.class, () -> service.plus(null, 5));
+        assertThrows(NullPointerException.class, () -> service.plus(8, null));
+        assertThrows(NullPointerException.class, () -> service.plus(null, null));
         assertEquals("5 + 6 = 11", service.plus(5, 6));
         assertEquals("-5 + 6 = 1", service.plus(-5, 6));
         assertEquals("5 + -6 = -1", service.plus(5, -6));
@@ -27,25 +30,43 @@ public class CalculatorServiceTests {
 
     @Test
     void minusTest() {
+        assertThrows(NullPointerException.class, () -> service.minus(null, 5));
+        assertThrows(NullPointerException.class, () -> service.minus(8, null));
+        assertThrows(NullPointerException.class, () -> service.minus(null, null));
         assertEquals("5 - 6 = -1", service.minus(5, 6));
         assertEquals("-5 - 6 = -11", service.minus(-5, 6));
         assertEquals("5 - -6 = 11", service.minus(5, -6));
         assertEquals("-5 - -6 = 1", service.minus(-5, -6));
         assertEquals("5 - 0 = 5", service.minus(5, 0));
         assertEquals("0 - 6 = -6", service.minus(0, 6));
-        //assertThrows(IllegalArgumentException.class, () -> service.divide(4, 0));
 
     }
 
     @Test
     void multiplyTest() {
+        assertThrows(NullPointerException.class, () -> service.multiply(null, 5));
+        assertThrows(NullPointerException.class, () -> service.multiply(8, null));
+        assertThrows(NullPointerException.class, () -> service.multiply(null, null));
         assertEquals("5 * 6 = 30", service.multiply(5, 6));
         assertEquals("-5 * 6 = -30", service.multiply(-5, 6));
         assertEquals("5 * -6 = -30", service.multiply(5, -6));
         assertEquals("-5 * -6 = 30", service.multiply(-5, -6));
         assertEquals("5 * 0 = 0", service.multiply(5, 0));
         assertEquals("0 * 6 = 0", service.multiply(0, 6));
-        //assertThrows(IllegalArgumentException.class, () -> service.divide(4, 0));
+
+    }
+
+    @Test
+    void divideTest() {
+        assertThrows(NullPointerException.class, () -> service.divide(null, 5));
+        assertThrows(NullPointerException.class, () -> service.divide(8, null));
+        assertThrows(NullPointerException.class, () -> service.divide(null, null));
+        assertEquals("5 / 6 = 0.8333333", service.divide(5, 6));
+        assertEquals("-5 / 6 = -0.8333333", service.divide(-5, 6));
+        assertEquals("5 / -6 = -0.8333333", service.divide(5, -6));
+        assertEquals("-5 / -6 = 0.8333333", service.divide(-5, -6));
+        assertEquals("0 / 6 = 0.0", service.divide(0, 6));
+        assertThrows(IllegalArgumentException.class, () -> service.divide(4, 0));
 
     }
 }
